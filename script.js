@@ -14,6 +14,12 @@ function getComputerChoice () {
     }   
 }
 
+function getPlayerChoice () {
+    let choice = prompt('Rock paper scissors shoot!').toLowerCase;
+    console.log('player choice: ' + choice);
+    return choice;
+}
+
 function playRound(playerSelection, computerSelection) {
 
 }
