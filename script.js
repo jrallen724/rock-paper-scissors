@@ -28,18 +28,26 @@ function playRound(playerSelection, computerSelection) {
         return 'You win!';
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
         return 'You win!';
-    } else if (playerSelection === 'scissors' && computerSelection === 'pap er') {
+    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
         return 'You win!';
     } else {
         return 'You loose!'
     }
 }
 
-/* game (num) {
+ function game (num) {
     let playerCount = 0;
     let computerCount = 0;
     
-    while (playerCount < num || computerCount < num) {}
-} */
+    while (playerCount < num && computerCount < num) {
+        let result = playRound(getPlayerChoice(), getComputerChoice())
+            if (result === 'You win!') {
+                playerCount += 1;
+            } else if (result ==='You loose!') {
+                computerCount += 1;
+            }
+            console.log('Score - User: ' + playerCount + ' Computer : ' + computerCount);
+    }
+} 
 
-playRound(getPlayerChoice(), getComputerChoice());
+game(5);
