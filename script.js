@@ -14,15 +14,15 @@ function getComputerChoice () {
 }
 
 function getPlayerChoice () {
-    let choose = prompt('Rock paper scissors shoot!');
-    let playerChoice = choose.toLowerCase();
-    return playerChoice;
+    let choice = prompt('Rock paper scissors shoot!').toLowerCase();
+    console.log('player choice: ' + choice);
+    return choice;
 }
 
 function playRound(playerSelection, computerSelection) {
-    console.log('Player chooses ' + playerSelection + ' and computer chooses ' + computerSelection);
+    console.log('You chose ' + playerSelection + ' and the computer chose ' + computerSelection + '.')
     if (playerSelection === computerSelection) {
-        return 'Tie game. Try again.';
+        return 'Tie game.Try again';
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
         return 'You win!';
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
@@ -34,18 +34,19 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game (num) {
-    let userScore = 0;
-    let computerScore = 0;
-    while (num > 0) {
-        if (playRound(getPlayerChoice(), getComputerChoice()) === 'You win!') {
-            userScore += 1;
-            num --;
-        } else if(playRound(getPlayerChoice(), getComputerChoice()) === 'You loose!') {
-            computerScore += 1;
-            num --;
-        }
+ function game (num) {
+    let playerCount = 0;
+    let computerCount = 0;
+    
+    while (playerCount < num && computerCount < num) {
+        let result = playRound(getPlayerChoice(), getComputerChoice())
+            if (result === 'You win!') {
+                playerCount += 1;
+            } else if (result ==='You loose!') {
+                computerCount += 1;
+            }
+            console.log('Score - User: ' + playerCount + ' Computer : ' + computerCount);
     }
-}
+} 
 
-game (5);
+game(5);
