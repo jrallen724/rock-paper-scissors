@@ -50,4 +50,7 @@ function playRound(playerSelection, computerSelection) {
     }
 } 
 
-game(5);
+const btn = document.querySelector('.button');
+btn.addEventListener('click', playRound)
+
+//game(5);
