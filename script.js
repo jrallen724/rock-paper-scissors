@@ -1,17 +1,9 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice () {
-    let num = Math.floor(Math.random() * 3);
-    console.log(num);
-    switch(num) {
-       case 0:
-            return 'rock';
-        case 1:
-            return 'paper';
-        case 2:
-            return 'scissors';
-        default:
-            console('There seems to be and error') 
-            break;
-    }   
+    let choices = ['rock', 'paper', 'scissors'];
+    return choices[Math.floor(Math.random() * choices.length)]
 }
 
 function getPlayerChoice () {
@@ -20,37 +12,38 @@ function getPlayerChoice () {
     return choice;
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    let computerSelection = getComputerChoice();
     console.log('You chose ' + playerSelection + ' and the computer chose ' + computerSelection + '.')
     if (playerSelection === computerSelection) {
         return 'Tie game.Try again';
-    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        return 'You win!';
-    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        return 'You win!';
-    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+    } else if (
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')
+    ) {
+        playerScore ++;
         return 'You win!';
     } else {
-        return 'You loose!'
+        computerScore ++;
+        return 'You loose!';
     }
 }
 
  function game (num) {
-    let playerCount = 0;
-    let computerCount = 0;
     
-    while (playerCount < num && computerCount < num) {
+    while (playerScore < num && computerScore < num) {
         let result = playRound(getPlayerChoice(), getComputerChoice())
             if (result === 'You win!') {
-                playerCount += 1;
+                playerScore += 1;
             } else if (result ==='You loose!') {
-                computerCount += 1;
+                computerScore += 1;
             }
-            console.log('Score - User: ' + playerCount + ' Computer : ' + computerCount);
+            console.log('Score - User: ' + playerScore + ' Computer : ' + computerScore);
     }
 } 
 
-const btn = document.querySelector('.button');
-btn.addEventListener('click', playRound)
+const buttons = document.querySelectorAll('.button');
+buttons.forEach(button => button.addEventListener('click', playRound(button.value)));
 
 //game(5);
