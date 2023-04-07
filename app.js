@@ -39,15 +39,19 @@ function updateScores () {
 
 function checkWinner() {
     if (playerScore > 4 || computerScore > 4) {
-        result.textContent = 'Game Over';
-        return;
+        return true;
+    } else {
+        return false;
     }
 }
 
 imageChoice.forEach((choice) => {
     choice.addEventListener('click', () => {
-        checkWinner();
+        if (checkWinner()) {
+            result.textContent = 'Game Over';
+        } else {
         playRound(choice.id, getComputerChoice());
         updateScores();
+        }
     });
 });
